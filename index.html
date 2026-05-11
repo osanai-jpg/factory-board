@@ -650,7 +650,7 @@ function saveGasUrl(){
 // ============================================================
 function loadAll(){
   showToast('データを読み込み中...');
-  fetch(gasUrl+'?action=getAll')
+  fetch(gasUrl+'?action=getAll', {redirect:'follow'})
     .then(function(r){return r.json();})
     .then(function(data){
       if(data.status!=='ok') throw new Error(data.message);
@@ -708,7 +708,7 @@ function setMonthlyShift(name,dateKey,val){
 
 function loadAssign(){
   var gasKey=getGasDateKey(curDay,curAmPm);
-  fetch(gasUrl+'?action=getAssign&date='+encodeURIComponent(gasKey))
+  fetch(gasUrl+'?action=getAssign&date='+encodeURIComponent(gasKey), {redirect:'follow'})
     .then(function(r){return r.json();})
     .then(function(data){
       if(data.status!=='ok') return;
@@ -1585,3 +1585,5 @@ init();
 </script>
 </body>
 </html>
+
+
